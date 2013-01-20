@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Light Painter</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width initial-scale=1.0 user-scalable=0;">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="apple-touch-icon" href="apple-touch-icon-57x57-precomposed.png" />
+        <link rel="apple-touch-icon" href="apple-touch-icon-72x72-precomposed.png"  sizes="72x72" />
+        <link rel="apple-touch-icon" href="apple-touch-icon-114x114-precomposed.png" sizes="114x114" />
+        <link rel="apple-touch-icon" href="apple-touch-icon-144x144-precomposed.png" sizes="144x144" />
+
+        <link rel="apple-touch-startup-image" href="img/lp_splash320x460.jpg" sizes="320x460"  media="(max-device-width: 480px) and not (-webkit-min-device-pixel-ratio: 2)" />
+        <link rel="apple-touch-startup-image" href="img/lp_splash640x920.jpg" sizes="640x920"  media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
+        <link rel="apple-touch-startup-image" href="img/lp_splash768x1004.jpg" sizes="768x1004" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)" />
+        <link rel="apple-touch-startup-image" href="img/lp_splash1024x748.jpg" sizes="1024x748" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)" />
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/spectrum.css">
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+
+    </head>
+    <body class="solid">
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="pageWrapper">
+
+            <div id="sidebar">
+                <div id="sideMenu">
+                    <span class="close">x</span>
+                    <div class="colorMode">
+                        <h4 style="margin-top:0; margin-bottom: 0.3em;">Color Mode</h4>
+                        <input type="radio" name="modeSelector" value="tiltMode" id="tiltMode"> <label for="tiltMode">Tilt</label> &nbsp;
+                        <input type="radio" name="modeSelector" value="solidMode" id="solidMode" checked> <label for="solidMode">Solid</label> &nbsp;
+                        <input type="radio" name="modeSelector" value="strobeMode" id="strobeMode"> <label for="strobeMode">Strobe</label>
+                    </div>
+                    <div class="settings tilt-settings">
+                        <h4>Tilt Color Settings</h4>
+                        <input type='text' id="CB01" class="colorBox" value="#00ff1e" /> Little Left<br>
+                        <input type='text' id="CB02" class="colorBox" value="#eaff00" /> A Lot Left<br>
+                        <hr>
+                        <input type='text' id="CB03" class="colorBox" value="#00c6ff" /> Little Right<br>
+                        <input type='text' id="CB04" class="colorBox" value="#001eff" /> A Lot Right<br>
+                        <br>
+                        <div class="stats">
+                            <strong>Accelerometer Stats:</strong><br>
+                            <div class="accX">X: <span></span></div>
+                            <div class="accY">Y: <span></span></div>
+                            <div class="accZ">Z: <span></span></div>
+                        </div>
+                    </div>
+                    <div class="settings solid-settings" style="display:block;">
+                        <h4>Solid Color Settings</h4>
+                        Choose Color: <input type='text' id="SCB01" class="solidColorBox" value="#ffffff" />
+                    </div>
+                    <div class="settings strobe-settings clearfix">
+                        <h4>Strobe Color Settings</h4>
+                        <input type='text' id="STRCB01" class="strobeColorBox" value="#00ff1e" /> Color 1<br>
+                        <input type='text' id="STRCB02" class="strobeColorBox" value="#eaff00" /> Color 2<br>
+                        <input type='text' id="STRCB03" class="strobeColorBox" value="#00c6ff" /> Color 3<br>
+                        <input type='text' id="STRCB04" class="strobeColorBox" value="#001eff" /> Color 4<br>
+
+                        <h5>Strobe Delay</h5>
+                        <div class="strobeDelayAmount"></div>
+                        <input type="range" id="strobeDelay" name="strobeDelay" min="0" max="4000" step="50" value="800">
+
+                        <h5>Strobe Blending Timing</h5>
+                        <div class="strobeTimerAmount"></div>
+                        <input type="range" id="strobeTimer" name="strobeTimer" min="0" max="2000" step="50" value="0">
+                    </div>
+                 </div>
+            </div> <!-- sidebar -->
+
+            <div class="container">
+
+                <div id="appModeNote">
+                    <em>Go Full Screen!</em>
+                    <span>Use the "Add to Home Screen" Feature</span>
+                </div>
+
+                <a href="#" class="navTrigger">Color Mode</a>
+                <a href="#" class="canvasTrigger" data-reveal-id="canvasOptions">Canvas</a>
+                <div class="colorCanvas"></div>
+            </div> <!-- container -->
+
+        </div> <!-- pageWrapper -->
+
+        <div id="welcome" class="reveal-modal small">
+            <h2 style="margin-top: 0; margin-bottom: 0.6em;">Light Painter</h2>
+            <p>This web app that can be used in conjunction with long exposure, DSLR photography. Use your iOS device to 'paint' with light in your photos. Tap on screen to access menu buttons.</p>
+            <p style="font-size: 0.8em;"><em><strong>Getting Started:</strong> Please lock your device in the portrait orientation.<!--  Don't forget to add this page to your homesceen to take advantage of fullscreen enjoyment. --></em></p>
+            <a class="close-reveal-modal">&#215;</a>
+        </div>
+
+        <div id="canvasOptions" class="reveal-modal small">
+            <h3 style="margin-top: 0; margin-bottom: 0.6em;">Canvas Options:</h3>
+            <a href="#" id="fullScreen" class="button active">Full Screen</a>
+            <a href="#" id="square" class="button">Square</a>
+            <a href="#" id="circle" class="button">Circle</a>
+            <hr style="margin-bottom: 4px;">
+            <input type="checkbox" id="animCanvas" name="animCanvas" value="true" disabled><label for="animCanvas" style="opacity:0.3"> Animate Canvas Size</label>
+
+            <div class="canvasLabel maxCan" style="opacity:0.3">
+                <span class="max"><strong>Max. </strong></span><strong>Canvas Size</strong>
+                <span class="currentSize"></span>
+            </div>
+            <input type="range" id="canvasSize" name="canvasSize" min="10" max="100" step="10" value="100" disabled >
+            
+            <div class="canvasLabel minCan">
+                <strong>Min. Canvas Size</strong>
+                <span class="minSize"></span>
+            </div>
+            <input type="range" id="minCanvasSize" name="minCanvasSize" min="10" max="100" step="10" value="10" >
+            
+            <div class="canvasLabel canSpeed">
+                <strong>Animation Duration</strong>
+                <span class="animSpd"></span>
+            </div>
+            <input type="range" id="canvasSpeed" name="canvasSpeed" min="0" max="5000" step="100" value="2500" >
+
+            <a class="close-reveal-modal">&#215;</a>
+        </div>
+
+        <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/spectrum.js"></script>
+        <script src="js/jquery.reveal.js"></script>
+        <script src="js/jquery-ui-1.9.2.custom.min.js"></script>
+        <script src="js/jquery.transform2d.js"></script>
+        <script src="js/jquery.event.move.js"></script>
+        <script src="js/jquery.event.swipe.js"></script>
+        <script src="js/main.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID.
+        <script>
+            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script> -->
+    </body>
+</html>
